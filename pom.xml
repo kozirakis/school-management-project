@@ -86,7 +86,11 @@
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>1.6.3</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
 	</dependencies>
 
 	<build>
