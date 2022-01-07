@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!--/* Title of this template will be passed to the head fragment along with custom links and scripts */-->
+<head th:include="fragments/layout :: head(~{:: title})">
+    <title>Update Teacher</title>
+    <style>
+        form {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+        .form .checkbox {
+            font-weight: 400;
+        }
+        form .form-control {
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+        form .form-control:focus {
+            z-index: 2;
+        }
+        form input {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!--/* The element with breadcrumb class will be passed to the header fragment */-->
+<header th:replace="fragments/layout :: header(~{ :: .breadcrumb})">
+    <ol class="breadcrumb container">
+<!--        <li>-->
+<!--            <a th:href="@{/}">Home</a>-->
+<!--        </li>-->
+<!--        /-->
+        <li>
+            <a th:href="@{/teachers}">Teachers</a>
+        </li>
+        /
+        <li>
+            <a th:href="@{/teachers/edit/{id}(id=${teacher.id})}">Update</a>
+        </li>
+    </ol>
+</header>
+
+
+<!--/* Insert content fragment with content of the element with id = 'teachers-list' */-->
+<div th:replace="fragments/layout :: content(value = ~{:: #add-teacher})">
+
+    <div id="add-teacher" class="row" >
+        <form
+                th:action="@{/teachers/update/{id}(id=${teacher.id})}"
+                th:object="${teacher}"
+                method="post">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name" class="form-control">
+                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name" class="form-control">
+                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" th:field="*{address}" id="address" placeholder="Address" class="form-control">
+                <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="text" th:field="*{phoneNumber}" id="phoneNumber" placeholder="Phone Number" class="form-control">
+                <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+            </div>
+            <div class="form-group">
+                <label for="comment">Comment</label>
+                <input type="text" th:field="*{comment}" id="comment" placeholder="Comment" class="form-control">
+                <span th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></span>
+            </div>
+            <button type="submit" class="btn btn-primary mt-5">Update</button>
+        </form>
+    </div>
+
+</div>
+
+<footer th:replace="fragments/layout :: footer">Footer</footer>
+</body>
+</html>
