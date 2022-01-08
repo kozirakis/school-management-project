@@ -4,4 +4,4 @@ COPY target/school-management-project-0.0.1-SNAPSHOT.jar school-management-proje
 
 EXPOSE 8080
 
-ENTRYPOINT [ "sh", "-c", "java -jar /school-management-project-0.0.1-SNAPSHOT.jar" ]
+ENTRYPOINT [ "java","-jar /school-management-project-0.0.1-SNAPSHOT.jar" ]
