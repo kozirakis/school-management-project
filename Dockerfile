@@ -1,6 +1,6 @@
 FROM openjdk:11-jdk-slim-buster
 
-COPY target/school-management-project-0.0.1-SNAPSHOT.jar school-management-project-0.0.1-SNAPSHOT.jar
+ADD target/school-management-project-0.0.1-SNAPSHOT.jar school-management-project-0.0.1-SNAPSHOT.jar
 
 EXPOSE 8080
 

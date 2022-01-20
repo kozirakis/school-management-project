@@ -1,15 +1,22 @@
 package com.example;
 
-
 import com.example.middlewear.entity.Teacher;
+import com.example.middlewear.repository.TeacherRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.EventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
+@Configuration
 public class LoadDatabase {
 
+    private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
     private static String[] teacherNames = new String[] {
             "George",
@@ -54,28 +61,15 @@ public class LoadDatabase {
             "Good job !!"
     };
 
+    @Autowired
+    TeacherRepository teacherRepository;
 
 
-//    private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
-//
-//
-//    @Bean
-//    CommandLineRunner initDatabase(TeacherRepository teacherRepository) {
-//        return args -> {
-//            teacherRepository.deleteAll();
-//            log.info("Preloading " + teacherRepository.saveAll(generateRandomTeachers()));
-//        };
-//    }
-
-//    @Autowired
-//    TeacherRepository teacherRepository;
-//
-//    private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
-//
-//    @EventListener(ApplicationReadyEvent.class)
-//    public void initDatabase() {
-//        log.info("Preloading " + teacherRepository.saveAll(generateRandomTeachers()));
-//    }
+    @EventListener(ApplicationReadyEvent.class)
+    public void initDatabase() {
+        TeacherRepository tr = this.teacherRepository;
+        log.info("Preloading " + tr.saveAll(generateRandomTeachers()));
+    }
 
     private static int getRandomUpperBound(int i) {
         return new Random().nextInt(i);
@@ -95,14 +89,8 @@ public class LoadDatabase {
                             addresses[getRandomUpperBound(addresses.length)],
                             phoneNumbers[getRandomUpperBound(addresses.length)],
                             comments[getRandomUpperBound(comments.length)]
-                    )
-            );
-
+                    ));
         }
         return teachers;
     }
-
-
-
-
 }

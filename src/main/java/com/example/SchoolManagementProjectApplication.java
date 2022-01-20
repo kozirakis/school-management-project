@@ -8,28 +8,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@SpringBootApplication
-
-@ComponentScan(basePackages = {"com.example.*"})
-@Configuration
-@EnableMongoRepositories
-public class SchoolManagementProjectApplication implements CommandLineRunner {
-
-
-    @Autowired
-    TeacherRepository teacherRepository;
+@SpringBootApplication()
+public class SchoolManagementProjectApplication{
 
     public static void main(String[] args) {
         SpringApplication.run(SchoolManagementProjectApplication.class, args);
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-        teacherRepository.deleteAll();
-        teacherRepository.saveAll(LoadDatabase.generateRandomTeachers());
     }
 
     @Bean

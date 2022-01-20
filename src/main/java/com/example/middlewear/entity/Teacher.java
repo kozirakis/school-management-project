@@ -29,11 +29,4 @@ public class Teacher {
         this.comment = comment;
     }
 
-
-    @Override
-    public String toString() {
-        return String.format(
-                "Teacher[id=%s, firstName='%s', lastName='%s', adress='%s', phoneNumber='%d', comment='%s' ]",
-                id, firstName, lastName, address, phoneNumber);
-    }
 }

@@ -1,4 +1,4 @@
-version: "2"
+version: '2'
 services:
   school-management-project:
     build:
@@ -13,7 +13,7 @@ services:
     environment:
       - SERVER_PORT=8080
       - SPRING_PROFILES_ACTIVE=prod
-      - SPRING_APPLICATION_NAME=mindthecode-springboot
+      - SPRING_APPLICATION_NAME=school-management-project
       - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=$MONGO_DB
       - SPRING_DATA_MONGODB_AUTO_INDEX_CREATION=$MONGO_AUTO_INDEX_CREATION
       - SPRING_DATA_MONGODB_HOST=mongo
@@ -38,6 +38,3 @@ services:
     volumes:
       - $MONGO_DATA_HOST_PATH:/data/db/
       - $MONGO_LOG_HOST_PATH:/var/log/mongodb/
-      - ./users_init.sh:/docker-entrypoint-initdb.d/users_init.sh:ro
-
-
