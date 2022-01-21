@@ -36,5 +36,5 @@ services:
       - MONGO_DB_USERNAME=$MONGO_DB_USERNAME
       - MONGO_DB_PASSWORD=$MONGO_DB_PASSWORD
     volumes:
-      - $MONGO_DATA_HOST_PATH:/data/db/
+      - $MONGO_DATA_HOST_PATH:/data/admin/
       - $MONGO_LOG_HOST_PATH:/var/log/mongodb/
